@@ -1,22 +1,22 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 5000; // You can use your preferred port number
+const port = 5000; // you can change the port if needed
 
 // Serve static files from the 'public' folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-// Example route (optional, if you want to return some data)
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-// Other routes (for API, for example)
+// API route to return products
 app.get('/api/products', (req, res) => {
   res.json(require('./db.json').products);
 });
 
-// Start the server
+// Example root route
+app.get('/', (req, res) => {
+  res.send('Backend is running...');
+});
+
+// Start server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`✅ Server running at http://localhost:${port}`);
 });

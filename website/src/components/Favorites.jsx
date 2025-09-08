@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
-const API = import.meta.env.VITE_API_URL;
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState([]);       // productIds
   const [products, setProducts] = useState([]);         // all products
   const [loading, setLoading] = useState(true);
+  const API = import.meta.env.VITE_API_URL;
+
 
   useEffect(() => {
     const load = async () => {
@@ -55,9 +56,9 @@ export default function Favorites() {
               className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 flex flex-col"
             >
               <img
-                src={item.imageURL}
-                alt={item.title}
-                className="w-full h-40 object-contain rounded mb-3"
+              src={`${API}${item.imageURL}`}
+              alt={item.title}
+              className="h-16 w-16 object-cover rounded"
               />
               <p className="font-semibold text-lg truncate">{item.title}</p>
               <p className="text-sm text-gray-600">{item.category}</p>

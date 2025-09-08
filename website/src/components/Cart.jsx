@@ -2,6 +2,7 @@ import { useCart } from "../context/CartContext";
 
 function Cart() {
   const { cart, increaseQty, decreaseQty, removeFromCart, total } = useCart();
+  const API = import.meta.env.VITE_API_URL;
 
   return (
     <section className="max-w-5xl mx-auto p-4">
@@ -16,11 +17,11 @@ function Cart() {
               className="flex items-center justify-between border p-4 rounded-lg shadow-sm"
             >
               <div className="flex items-center space-x-4">
-                <img
-                  src={item.imageURL}
-                  alt={item.title}
-                  className="h-16 w-16 object-cover rounded"
-                />
+              <img
+              src={`${API}${item.imageURL}`}
+              alt={item.title}
+              className="h-16 w-16 object-cover rounded"
+              />
                 <div>
                   <h3 className="font-semibold">{item.title}</h3>
                   <p className="text-gray-500">{item.salePrice} EGP</p>

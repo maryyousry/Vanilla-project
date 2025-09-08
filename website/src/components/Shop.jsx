@@ -4,10 +4,11 @@ import { useCart } from "../context/CartContext";
 import { FaShoppingCart, FaHeart, FaRegHeart } from "react-icons/fa";
 
 // Load API from .env (must be prefixed with VITE_)
-const API = import.meta.env.VITE_API_URL;
+// const API = import.meta.env.VITE_API_URL;
 
 export default function Shop() {
   const { cart, addToCart, removeFromCart, cartQty, total, increaseQty, decreaseQty } = useCart();
+  const API = import.meta.env.VITE_API_URL;
 
   const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]); // store productIds
@@ -135,12 +136,13 @@ export default function Shop() {
               <div
                 key={item.id}
                 className="bg-white border border-blue-300 rounded-xl shadow hover:shadow-lg transition"
-              >
-                <img
-                  src={item.imageURL}
-                  alt={item.title}
-                  className={`w-4/5 mx-auto object-contain mt-4 ${heightImage}`}
-                />
+                  >
+             <img
+  src={`${API}${item.imageURL}`}
+  alt={item.title}
+  className={`w-4/5 mx-auto object-contain mt-4 ${heightImage}`}
+/>
+
                 <div className="p-4">
                   <p className="font-semibold text-sm sm:text-base">
                     Product: {item.title}
